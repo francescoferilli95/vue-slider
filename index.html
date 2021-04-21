@@ -17,25 +17,25 @@
     <!-- APP -->
     <div id="app">
 
-        <section class="slider">
+        <section class="slider" @mouseenter="stopLoop" @mouseleave="startLoop">
             <!-- PREV ARROW -->
-            <div class="prev">
+            <div class="prev" @click="prevImage">
                 <div class="fas fa-arrow-left"></div>
             </div>
             <!-- IMAGES -->
             <div class="images">
-                <img src="./img/image1.jpg" alt="">
+                <img :src="images[indexImage]" :alt="textImage">
             </div>
             <!-- NEXT ARROW -->
-            <div class="next">
+            <div class="next" @click="nextImage">
                 <div class="fas fa-arrow-right"></div>
             </div>
             <!-- DOT NAVIGATION -->
             <div class="nav">
-                <i class="fas fa-circle active"></i>
-                <i class="fas fa-circle"></i>
-                <i class="fas fa-circle"></i>
-                <i class="fas fa-circle"></i>
+                <i v-for="(image, index) in images"
+                class="fas fa-circle"
+                :class="{active: index == indexImage}"
+                @click="setImage(index)"></i>
             </div>
         </section>
 
